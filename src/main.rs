@@ -1,4 +1,4 @@
-#![warn(clippy::all, clippy::pedantic)]
+#![warn(clippy::all)]
 #![allow(clippy::cast_sign_loss, clippy::module_name_repetitions)]
 mod camera;
 mod components;
@@ -62,7 +62,8 @@ impl GameState for State {
         ctx.set_active_console(1);
         ctx.cls();
         self.resources.insert(ctx.key);
-        self.systems.execute(&mut self.ecs, &mut self.resources);
+        self.systems
+            .execute(&mut self.ecs, &mut self.resources);
         render_draw_buffer(ctx).expect("render error");
     }
 }
